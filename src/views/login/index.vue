@@ -7,10 +7,18 @@
           <h1>Hello</h1>
           <h2>欢迎来到xx平台</h2>
           <el-form-item>
-            <el-input :prefix-icon="User" v-model="loginFrom.username"></el-input>
+            <el-input
+              :prefix-icon="User"
+              v-model="loginFrom.username"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input type="password" :prefix-icon="Lock" v-model="loginFrom.password" show-password></el-input>
+            <el-input
+              type="password"
+              :prefix-icon="Lock"
+              v-model="loginFrom.password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item>
             <el-button class="login_btn" type="primary" size="default">
@@ -24,10 +32,10 @@
 </template>
 
 <script lang="ts">
-import {User,Lock} from '@element-plus/icons-vue'
-import {reactive} from "vue";
+import { User, Lock } from "@element-plus/icons-vue";
+import { reactive } from "vue";
 
-let loginFrom = reactive({username: 'admin',password: '111111'})
+let loginFrom = reactive({ username: "admin", password: "111111" });
 </script>
 
 <style scoped></style>
