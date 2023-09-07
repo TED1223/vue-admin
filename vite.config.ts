@@ -15,7 +15,7 @@ export default ({ command }) => {
       }),
       vue(),
       viteMockServe({
-        localEnabled: command === 'serve',
+        localEnabled: command === "serve",
       }),
     ],
     resolve: {
