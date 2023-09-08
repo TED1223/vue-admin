@@ -3,16 +3,21 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form">
+        <el-form
+          class="login_form"
+          :model="loginFrom"
+          :rules="rules"
+          ref="loginForms"
+        >
           <h1 class="h1">Hello</h1>
           <h2 class="h2">欢迎来到xx平台</h2>
-          <el-form-item>
+          <el-form-item prop="username">
             <el-input
               :prefix-icon="User"
               v-model="loginFrom.username"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               type="password"
               :prefix-icon="Lock"
@@ -44,6 +49,8 @@ import { Lock, User } from "@element-plus/icons-vue";
 import useUserStore from "@/store/modules/user";
 import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
+//引入获取当前时间的函数
+import { getTime } from "@/utils/time";
 
 let userStore = useUserStore();
 //获取路由器
@@ -51,7 +58,10 @@ let $router = useRouter();
 //定义变量控制按钮加载效果
 let loading = ref(false);
 let loginFrom = reactive({ username: "admin", password: "" });
+let loginForms = ref();
 const login = async () => {
+  //保证全部表单校验通过
+  await loginForms.value.validate();
   loading.value = true;
 
   try {
@@ -61,6 +71,7 @@ const login = async () => {
     ElNotification({
       type: "success",
       message: "登录成功!",
+      title: `Hi ${getTime()}好`,
     });
     loading.value = false;
   } catch (error) {
@@ -70,6 +81,35 @@ const login = async () => {
     });
     loading.value = false;
   }
+};
+
+const validatorUsername = (rule: any, value: any, callback: any) => {
+  //rule：即为数组校验规则对象
+  //value表单信息
+  //callback 返回函数
+  if (value.length > 5) {
+    callback();
+  } else {
+    callback(new Error("账号长度至少五位"));
+  }
+};
+
+const validatorPassword = (rule: any, value: any, callback: any) => {
+  if (value.length > 6) {
+    callback();
+  } else {
+    callback(new Error("密码长度至少六位"));
+  }
+};
+
+//定义表单校验的规则
+const rules = {
+  username: [
+    { validator: validatorUsername, trigger: "change" },
+    // {required: true, min: 5,message: "用户名长度不能小于6", trigger: "change"},
+    // {required: true, max: 20,message: "用户名长度不能大于20", trigger: "change"},
+  ],
+  password: [{ validator: validatorPassword, trigger: "change" }],
 };
 </script>
 
