@@ -1,25 +1,25 @@
 export const constantRoute = [
   {
     //登录路由
-    url: "/login",
+    path: "/login",
     component: () => import("@/views/login/index.vue"),
     name: "login",
   },
   {
     //登录路由
-    url: "/",
-    component: () => import(""),
+    path: "/",
+    component: () => import("@/views/home/index.vue"),
     name: "layout",
   },
   {
     //登录路由
-    url: "/404",
-    component: () => import(""),
+    path: "/404",
+    component: () => import("@/views/404/index.vue"),
     name: "404",
   },
   {
     //登录路由
-    url: "/:pathMatch(.*)*",
+    path: "/:pathMatch(.*)*",
     redirect: "/404",
     name: "Any",
   },
