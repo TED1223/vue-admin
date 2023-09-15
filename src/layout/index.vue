@@ -23,7 +23,7 @@
     </div>
     <div class="layout_main">
       <router-view></router-view>
-<!--      <Main></Main>-->
+      <!--      <Main></Main>-->
     </div>
   </div>
 </template>

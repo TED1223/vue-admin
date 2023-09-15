@@ -2,8 +2,11 @@
   <el-button size="small" icon="Refresh" circle></el-button>
   <el-button size="small" icon="FullScreen" circle></el-button>
   <el-button size="small" icon="Setting" circle></el-button>
-  <img src="../../../assets/images/logo.png" style="width: 24px; height: 24px; margin: 0px 10px">
-<!--  下拉菜单-->
+  <img
+    src="../../../assets/images/logo.png"
+    style="width: 24px; height: 24px; margin: 0px 10px"
+  />
+  <!--  下拉菜单-->
   <el-dropdown>
     <span class="el-dropdown-link">
       admin
@@ -19,10 +22,6 @@
   </el-dropdown>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
