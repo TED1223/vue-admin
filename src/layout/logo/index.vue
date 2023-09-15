@@ -1,11 +1,13 @@
 <template>
-  <div class="logo">
-    <img src="../../assets/images/logo.png" alt="" />
-    <p>甄选运营平台</p>
+  <div class="logo" v-if="!setting.logoHidden">
+    <img :src="setting.logo" alt="" />
+    <p>{{ setting.title }}</p>
   </div>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+import setting from "@/setting";
+</script>
 
 <style scoped lang="scss">
 .logo {
@@ -14,10 +16,16 @@
   color: white;
   display: flex;
   align-items: center;
+  padding: 20px;
 
   img {
     width: 40px;
     height: 40px;
+  }
+  p {
+    font-size: $base-menu-text-fontSize;
+    margin-left: 10px;
+    color: white;
   }
 }
 </style>
