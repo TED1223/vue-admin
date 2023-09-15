@@ -2,16 +2,42 @@
   <div class="layout_container">
     <div class="layout_slider">
       <Logo></Logo>
+      <!--     滚动条组件 -->
+      <el-scrollbar
+        class="scrollbar"
+        :class="{ fold: !!LayoutSettingStore.fold }"
+      >
+        <el-menu
+          :collapse="!!LayoutSettingStore.fold"
+          :default-active="$router.path"
+          background-color="#001529"
+          text-color="white"
+        >
+          <!--根据路由动态生成菜单-->
+          <Menu :menuList="userStore.menuRoutes"></Menu>
+        </el-menu>
+      </el-scrollbar>
     </div>
-    <div class="layout_tabbar">456</div>
+    <div class="layout_tabbar">
+      <Tabbar></Tabbar>
+    </div>
     <div class="layout_main">
-      <p style="height: 1000000px; background: red">sdasdsadsadasd</p>
+      <router-view></router-view>
+<!--      <Main></Main>-->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Logo from "./logo/index.vue";
+import Menu from "@/layout/menu/index.vue";
+import useUserStore from "@/store/modules/user";
+import useLayoutSettingStore from "@/store/modules/setting";
+import Main from "@/layout/main/index.vue";
+import Tabbar from "@/layout/tabbar/index.vue";
+
+let userStore = useUserStore();
+let LayoutSettingStore = useLayoutSettingStore();
 </script>
 
 <style lang="scss" scoped>
@@ -23,6 +49,10 @@ import Logo from "./logo/index.vue";
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-background;
+
+    &.fold {
+      width: $base-menu-min-width;
+    }
   }
 
   .layout_tabbar {
@@ -43,6 +73,15 @@ import Logo from "./logo/index.vue";
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
+  }
+
+  .scrollbar {
+    width: $base-menu-width;
+    height: calc(100vh - $base-menu-logo-height);
+
+    .el-menu {
+      border-right: none;
+    }
   }
 }
 </style>
