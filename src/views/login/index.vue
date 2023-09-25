@@ -90,10 +90,10 @@ const validatorUsername = (rule: any, value: any, callback: any) => {
   //rule：即为数组校验规则对象
   //value表单信息
   //callback 返回函数
-  if (value.length >= 5) {
+  if (value.length >= 3) {
     callback();
   } else {
-    callback(new Error("账号长度至少五位"));
+    callback(new Error("账号长度至少3位"));
   }
 };
 

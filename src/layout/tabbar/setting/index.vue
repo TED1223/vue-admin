@@ -58,10 +58,10 @@ const fullScreen = () => {
   }
 };
 
-const logout = () => {
+const logout = async () => {
   //第一件事 向服务端发送去请求【退出登录接口】
   //2. 仓库当中的用户相关的数据清空
-  userStore.userLogout();
+  await userStore.userLogout();
   //3.跳转到登录界面
   $router.push({ path: "/login", query: { redirect: $route.path } });
 };

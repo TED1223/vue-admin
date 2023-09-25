@@ -16,8 +16,6 @@ import "@/styles/index.scss";
 import router from "@/router";
 //引入仓库
 import pinia from "@/store";
-//
-import "@/permisstion";
 
 //获取应用实例
 const app = createApp(App);
@@ -29,5 +27,7 @@ app.use(gloablComponent);
 //安装仓库
 app.use(pinia);
 app.use(router);
+//引入路由鉴权文件
+import "./permisstion";
 //将应用挂载到挂载点
 app.mount("#app");

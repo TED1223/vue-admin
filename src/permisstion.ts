@@ -7,10 +7,11 @@ import "nprogress/nprogress.css";
 nprogress.configure({ showSpinner: false });
 import useUserStore from "@/store/modules/user";
 import pinia from "@/store";
+
+let userStore = useUserStore(pinia);
 import setting from "@/setting";
-const userStore = useUserStore();
 //全局前置守卫
-Router.beforeEach((to: any, from: any, next: any) => {
+Router.beforeEach(async (to: any, from: any, next: any) => {
   //网页的名字
   document.title = `${setting.title}-${to.meta.title}`;
   //访问每一个路由之前的守卫
@@ -21,8 +22,8 @@ Router.beforeEach((to: any, from: any, next: any) => {
   //用户登录判断
   if (token) {
     //登录成功，访问login,指向首页
-    if (to.path == "login") {
-      next("/home");
+    if (to.path == "/login") {
+      next({ path: "/" });
     } else {
       //有用户信息的访问其他的放行
       if (username) {
@@ -31,15 +32,15 @@ Router.beforeEach((to: any, from: any, next: any) => {
         try {
           //获取用户信息
           await userStore.userInfo();
-          next();
+          next({...to});
         } catch (error) {
-          userStore.userLogout();
+          await userStore.userLogout();
           next({ path: "/login", query: { redirect: to.path } });
         }
       }
     }
   } else {
-    if (to.path == "login") {
+    if (to.path == "/login") {
       next();
     } else {
       next({ path: "/login", query: { redirect: to.path } });

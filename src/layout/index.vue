@@ -4,24 +4,23 @@
       <Logo></Logo>
       <!--     滚动条组件 -->
       <el-scrollbar
-        class="scrollbar"
-        :class="{ fold: !!LayoutSettingStore.fold }"
-      >
+        class="scrollbar">
         <el-menu
           :collapse="!!LayoutSettingStore.fold"
-          :default-active="$router.path"
+          :default-active="$route.path"
           background-color="#001529"
           text-color="white"
+          active-text-color="yellowgreen"
         >
           <!--根据路由动态生成菜单-->
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
-    <div class="layout_tabbar">
+    <div class="layout_tabbar" :class="{ fold: !!LayoutSettingStore.fold }">
       <Tabbar></Tabbar>
     </div>
-    <div class="layout_main">
+    <div class="layout_main" :class="{ fold: LayoutSettingStore.fold }">
       <!--      <router-view></router-view>-->
       <Main></Main>
     </div>
@@ -29,15 +28,25 @@
 </template>
 
 <script setup lang="ts">
-import Logo from "./logo/index.vue";
-import Menu from "@/layout/menu/index.vue";
-import useUserStore from "@/store/modules/user";
-import useLayoutSettingStore from "@/store/modules/setting";
-import Main from "@/layout/main/index.vue";
-import Tabbar from "@/layout/tabbar/index.vue";
-
+//获取路由对象
+import { useRoute } from 'vue-router'
+//引入左侧菜单logo子组件
+import Logo from './logo/index.vue'
+//引入菜单组件
+import Menu from './menu/index.vue'
+//右侧内容展示区域
+import Main from './main/index.vue';
+//引入顶部tabbar组件
+import Tabbar from './tabbar/index.vue';
+//获取用户相关的小仓库
+import useUserStore from '@/store/modules/user';
+import useLayOutSettingStore from '@/store/modules/setting';
 let userStore = useUserStore();
-let LayoutSettingStore = useLayoutSettingStore();
+//获取layout配置仓库
+let LayoutSettingStore = useLayOutSettingStore();
+
+//获取路由对象
+let $route = useRoute();
 </script>
 
 <style lang="scss" scoped>
@@ -62,6 +71,11 @@ let LayoutSettingStore = useLayoutSettingStore();
     background: #535bf2;
     top: 0;
     left: $base-menu-width;
+
+    &.fold{
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 
   .layout_main {
@@ -73,6 +87,11 @@ let LayoutSettingStore = useLayoutSettingStore();
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
+
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 
   .scrollbar {

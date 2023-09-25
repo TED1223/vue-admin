@@ -14,7 +14,7 @@
         </template>
       </el-menu-item>
     </template>
-    <!--    <template v-if="item.children && item.children.length === 1">
+    <template v-if="item.children && item.children.length === 1">
       <el-menu-item
         :index="item.children[0].path"
         v-if="!item.children[0].meta.hidden"
@@ -26,8 +26,11 @@
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
-    </template>-->
-    <el-sub-menu v-if="item.children" :index="item.path">
+    </template>
+    <el-sub-menu
+      v-if="item.children && item.children.length > 1"
+      :index="item.path"
+    >
       <template #title>
         <el-icon>
           <component :is="item.meta.icon"></component>
