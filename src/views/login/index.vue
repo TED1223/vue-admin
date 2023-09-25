@@ -48,13 +48,14 @@ import { reactive, ref } from "vue";
 import { Lock, User } from "@element-plus/icons-vue";
 import useUserStore from "@/store/modules/user";
 import { ElNotification } from "element-plus";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 //引入获取当前时间的函数
 import { getTime } from "@/utils/time";
 
 let userStore = useUserStore();
 //获取路由器
 let $router = useRouter();
+let $route = useRoute();
 //定义变量控制按钮加载效果
 let loading = ref(false);
 let loginFrom = reactive({ username: "admin", password: "" });
@@ -66,8 +67,10 @@ const login = async () => {
 
   try {
     await userStore.userLogin(loginFrom);
+    //判断登录的时候是否有query参数，如果有就往query参数跳转，如果没有就跳转到首页
+    let redirect: any = $route.query.redirect;
     //编程式跳转到首页
-    $router.push("/");
+    $router.push({ path: redirect || "/" });
     ElNotification({
       type: "success",
       message: "登录成功!",

@@ -22,8 +22,8 @@
       <Tabbar></Tabbar>
     </div>
     <div class="layout_main">
-      <router-view></router-view>
-      <!--      <Main></Main>-->
+      <!--      <router-view></router-view>-->
+      <Main></Main>
     </div>
   </div>
 </template>
