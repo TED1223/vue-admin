@@ -39,11 +39,11 @@ Router.beforeEach((to: any, from: any, next: any) => {
       }
     }
   } else {
-      if (to.path == 'login'){
-          next();
-      }else {
-          next({ path: "/login", query: { redirect: to.path } });
-      }
+    if (to.path == "login") {
+      next();
+    } else {
+      next({ path: "/login", query: { redirect: to.path } });
+    }
   }
 });
 

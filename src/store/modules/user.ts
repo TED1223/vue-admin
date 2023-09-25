@@ -1,12 +1,12 @@
 //创建用户相关的小仓库
 import { defineStore } from "pinia";
 //引入接口
-import {reqLogin, reqUserInfo} from "@/api/user";
+import { reqLogin, reqUserInfo } from "@/api/user";
 //引入数据类型
 import type { loginForm, loginResponseData } from "@/api/user/type";
 import type { UserState } from "@/store/modules/types/type";
 //引入操作本地存储的文件工具
-import {SET_TOKEN, GET_TOKEN, REMOVE_TOKEN} from "@/utils/token";
+import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from "@/utils/token";
 //引入路由数据
 import { constantRoute } from "@/router/routers";
 //创建用户小仓库
@@ -16,8 +16,8 @@ let useUserStore = defineStore("User", {
     return {
       token: GET_TOKEN(), //用户唯一标识
       menuRoutes: constantRoute, // 仓库存储生成菜单需要数组（路由）
-      username: '',
-      avatar: '',
+      username: "",
+      avatar: "",
     };
   },
   //处理异步|逻辑地方
@@ -35,20 +35,20 @@ let useUserStore = defineStore("User", {
         return Promise.reject(new Error(result.data.message as string));
       }
     },
-    async userInfo(){
+    async userInfo() {
       let result = await reqUserInfo();
-      if (result.code == 200){
+      if (result.code == 200) {
         this.username = result.data.checkUser.username;
         this.avatar = result.data.checkUser.avatar;
       }
     },
-    userLogout(){
+    userLogout() {
       //本地接口清空
-      this.token = '';
-      this.username = '';
-      this.avatar = '';
+      this.token = "";
+      this.username = "";
+      this.avatar = "";
       REMOVE_TOKEN();
-    }
+    },
   },
   getters: {},
 });

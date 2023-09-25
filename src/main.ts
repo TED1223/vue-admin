@@ -17,9 +17,7 @@ import router from "@/router";
 //引入仓库
 import pinia from "@/store";
 //
-import '@/permisstion'
-
-
+import "@/permisstion";
 
 //获取应用实例
 const app = createApp(App);
