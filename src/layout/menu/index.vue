@@ -35,7 +35,6 @@
         <component :is="item.meta.icon"></component>
       </el-icon>
       <template #title>
-
         <span> {{ item.meta.title }}</span>
       </template>
       <Menu :menuList="item.children"></Menu>
