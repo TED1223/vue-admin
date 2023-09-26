@@ -46,7 +46,7 @@ export const constantRoute = [
   },
   {
     path: "/screen",
-    component: () => import("@/views/acl/permission/index.vue"),
+    component: () => import("@/views/screen/index.vue"),
     name: "Screen",
     meta: {
       hidden: false,

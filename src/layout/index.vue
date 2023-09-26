@@ -57,10 +57,7 @@ let $route = useRoute();
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-background;
-
-    &.fold {
-      width: $base-menu-min-width;
-    }
+    transition: all 0.3s;
   }
 
   .layout_tabbar {
@@ -70,6 +67,7 @@ let $route = useRoute();
     background: #535bf2;
     top: 0;
     left: $base-menu-width;
+    transition: all 0.3s;
 
     &.fold {
       width: calc(100vw - $base-menu-min-width);
@@ -86,6 +84,7 @@ let $route = useRoute();
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
+    transition: all 0.3s;
 
     &.fold {
       width: calc(100vw - $base-menu-min-width);
