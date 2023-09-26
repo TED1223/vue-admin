@@ -34,7 +34,12 @@
             icon="Edit"
             @click="updateTrademark(row)"
           ></el-button>
-          <el-popconfirm :title="`您确定要删除${row.tmName}?`" width="250px" icon="Delete" @confirm='removeTradeNark(row.id)'>
+          <el-popconfirm
+            :title="`您确定要删除${row.tmName}?`"
+            width="250px"
+            icon="Delete"
+            @confirm="removeTradeNark(row.id)"
+          >
             <template #reference>
               <el-button type="primary" size="small" icon="Delete"></el-button>
             </template>
@@ -110,7 +115,8 @@
 //引入组合式API函数
 import { nextTick, onMounted, reactive, ref } from "vue";
 import {
-  reqCreateTrademark, reqDeleteTrademark,
+  reqCreateTrademark,
+  reqDeleteTrademark,
   reqHasTrademark,
   reqUpdateTrademark,
 } from "@/api/product/trademark";
@@ -286,23 +292,25 @@ const rules = {
 };
 
 //
-const removeTradeNark = async (id:number) => {
+const removeTradeNark = async (id: number) => {
   let result = await reqDeleteTrademark(id);
-  if (result.code == 200){
+  if (result.code == 200) {
     //删除成功提示信息
     ElMessage({
-      type: 'success',
-      message: '删除品牌成功'
+      type: "success",
+      message: "删除品牌成功",
     });
     //再次获取已有的品牌数据
-    getHasTrademark(trademarkArr.value.length > 1 ? pageNo.value : pageNo.value - 1);
-  }else {
+    getHasTrademark(
+      trademarkArr.value.length > 1 ? pageNo.value : pageNo.value - 1,
+    );
+  } else {
     ElMessage({
-      type: 'error',
-      message: '删除品牌失败'
-    })
+      type: "error",
+      message: "删除品牌失败",
+    });
   }
-}
+};
 </script>
 
 <style scoped>
