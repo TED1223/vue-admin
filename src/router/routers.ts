@@ -31,6 +31,15 @@ export const constantRoute = [
           icon: "HomeFilled",
         },
       },
+      {
+        path: "/trademark",
+        component: () => import("@/views/product/trademark/index.vue"),
+        meta: {
+          title: "商品管理",
+          hidden: false,
+          icon: "HomeFilled",
+        },
+      },
     ],
   },
   {

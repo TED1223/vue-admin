@@ -32,6 +32,7 @@ watch(
 <style scoped>
 .fade-enter-form {
   opacity: 0;
+  transform: scale(0);
 }
 
 .fade-enter-active {
@@ -40,5 +41,6 @@ watch(
 
 .fade-enter-to {
   opacity: 1;
+  transform: scale(1);
 }
 </style>

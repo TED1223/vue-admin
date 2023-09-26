@@ -58,7 +58,7 @@ let $router = useRouter();
 let $route = useRoute();
 //定义变量控制按钮加载效果
 let loading = ref(false);
-let loginFrom = reactive({ username: "shangguigu", password: "123456" });
+let loginFrom = reactive({ username: "shangguigu", password: "111111" });
 let loginForms = ref();
 const login = async () => {
   //保证全部表单校验通过
