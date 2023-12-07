@@ -16,9 +16,9 @@ export const constantRoute = [
     component: () => import("@/layout/index.vue"),
     name: "layout",
     meta: {
-      title: "",
+      title: "分类",
       hidden: true,
-      icon: "",
+      icon: "HomeFilled",
     },
     redirect: "/home",
     children: [
@@ -36,6 +36,15 @@ export const constantRoute = [
         component: () => import("@/views/product/trademark/index.vue"),
         meta: {
           title: "商品管理",
+          hidden: false,
+          icon: "HomeFilled",
+        },
+      },
+      {
+        path: "/attr",
+        component: () => import("@/views/product/attr/index.vue"),
+        meta: {
+          title: "属性管理",
           hidden: false,
           icon: "HomeFilled",
         },

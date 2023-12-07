@@ -54,6 +54,7 @@ let $route = useRoute();
   height: 100vh;
 
   .layout_slider {
+    color: white;
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-background;
@@ -83,6 +84,7 @@ let $route = useRoute();
     padding: 20px;
     overflow: auto;
     transition: all 0.3s;
+    background: white;
 
     &.fold {
       width: calc(100vw - $base-menu-min-width);
@@ -91,7 +93,7 @@ let $route = useRoute();
   }
 
   .scrollbar {
-    width: $base-menu-width;
+    width: 100%;
     height: calc(100vh - $base-menu-logo-height);
 
     .el-menu {
