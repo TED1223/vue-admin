@@ -4,7 +4,11 @@
     <el-form inline>
       <el-form-item label="一级分类">
         <!-- label:即为展示数据 value:即为select下拉菜单收集的数据 -->
-        <el-select v-model="categoryStore.c1Id" @change="handler">
+        <el-select
+          v-model="categoryStore.c1Id"
+          @change="handler"
+          :disabled="scene == 0 ? false : true"
+        >
           <el-option
             v-for="(c1, index) in categoryStore.c1Arr"
             :key="c1.id"
@@ -15,7 +19,11 @@
       </el-form-item>
       <el-form-item label="二级分类">
         <!-- label:即为展示数据 value:即为select下拉菜单收集的数据 -->
-        <el-select v-model="categoryStore.c2Id" @change="handler1">
+        <el-select
+          v-model="categoryStore.c2Id"
+          @change="handler1"
+          :disabled="scene == 0 ? false : true"
+        >
           <el-option
             v-for="(c2, index) in categoryStore.c2Arr"
             :key="c2.id"
@@ -26,7 +34,10 @@
       </el-form-item>
       <el-form-item label="三级分类">
         <!-- label:即为展示数据 value:即为select下拉菜单收集的数据 -->
-        <el-select v-model="categoryStore.c3Id">
+        <el-select
+          v-model="categoryStore.c3Id"
+          :disabled="scene == 0 ? false : true"
+        >
           <el-option
             v-for="(c3, index) in categoryStore.c3Arr"
             :key="c3.id"
@@ -69,6 +80,9 @@ const handler1 = () => {
   categoryStore.c3Arr = [];
   categoryStore.getC3();
 };
+
+//接受父组件传递过来scene
+defineProps(['scene']);
 </script>
 
 <style scoped></style>
