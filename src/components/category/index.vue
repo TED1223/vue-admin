@@ -82,7 +82,7 @@ const handler1 = () => {
 };
 
 //接受父组件传递过来scene
-defineProps(['scene']);
+defineProps(["scene"]);
 </script>
 
 <style scoped></style>

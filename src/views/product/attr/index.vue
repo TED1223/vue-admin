@@ -96,7 +96,7 @@
 
 <script setup lang="ts">
 import useCategoryStore from "@/store/modules/category";
-import {nextTick, reactive, ref, watch} from "vue";
+import { nextTick, reactive, ref, watch } from "vue";
 import { reqAddOrUpdateAttr, reqAttr } from "@/api/product/attr";
 import { Attr, AttrResponseData, AttrValue } from "@/api/product/attr/type";
 import { ElMessage } from "element-plus";
@@ -133,27 +133,27 @@ watch(
 //属性值表单元素失却焦点事件回调
 const toLook = (row: AttrValue, $index: number) => {
   //非法情况判断1
-  if(row.valueName.trim() == ''){
-    attrParams.attrValueList.splice($index,1)
+  if (row.valueName.trim() == "") {
+    attrParams.attrValueList.splice($index, 1);
     ElMessage({
       type: "error",
       message: "属性值不能未空",
     });
-    return
+    return;
   }
   //非法情况2
   let repeat = attrParams.attrValueList.find((item) => {
-    if (item != row){
+    if (item != row) {
       return item.valueName === row.valueName;
     }
-  })
-  if (repeat){
-    attrParams.attrValueList.splice($index,1)
+  });
+  if (repeat) {
+    attrParams.attrValueList.splice($index, 1);
     ElMessage({
       type: "error",
       message: "属性值不能重复",
     });
-    return
+    return;
   }
 
   //相应的属性值对象flag:变为false,展示div
@@ -167,7 +167,7 @@ const toEdit = (row: AttrValue, $index: number) => {
   //nextTick:响应式数据发生变化,获取更新的DOM(组件实例)
   nextTick(() => {
     inputArr.value[$index].focus();
-  })
+  });
 };
 
 //保存按钮的回调
@@ -199,8 +199,8 @@ const addAttrValue = () => {
   });
   //获取最后el-input组件聚焦
   nextTick(() => {
-    inputArr.value[attrParams.attrValueList.length -1].focus();
-  })
+    inputArr.value[attrParams.attrValueList.length - 1].focus();
+  });
 };
 const addAttr = () => {
   //每一次点击的时候,先清空一下数据再收集数据
